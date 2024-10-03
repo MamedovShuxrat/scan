@@ -1,0 +1,62 @@
+@import '../../assets/styles/variables.scss';
+
+.footer {
+    background: $main-cyan;
+    padding: 25px 45px 25px 60px;
+
+}
+
+.footerInner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footerWpapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    span {
+        display: block;
+        margin-top: 21px;
+        color: $main-white ;
+        font-family: 'Inter';
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 17px;
+    }
+}
+
+.footerCopy {
+    max-width: 33%;
+    transition: opacity .8s ease-in-out;
+    opacity: 0;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 17px;
+    color: $accent-cyan;
+    text-align: center;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    a {
+        background: linear-gradient(90deg, #f4f6f6, #8997f3, #ebecd9);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        padding-left: 2px;
+    }
+}
+
+
+.footerLink {
+    color: $main-white ;
+    font-family: 'Inter';
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+}

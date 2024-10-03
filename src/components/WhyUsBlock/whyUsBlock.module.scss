@@ -1,0 +1,72 @@
+@import '../../assets/styles/variables.scss';
+
+
+.whyUs {
+    padding: 30px 50px;
+}
+
+.whyUsTitle {
+    color: $main-dark;
+    font-family: 'Ferry';
+    font-size: 45px;
+    font-weight: 900;
+    line-height: 54px;
+    text-align: left;
+    margin-bottom: 70px;
+}
+
+.slider {
+    display: flex;
+    align-items: center;
+}
+
+.cardsWrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch;
+    width: 100%;
+    gap: 30px;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    background: $main-white;
+    padding: 20px 20px 46px 20px;
+    width: calc(33% - 30px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.cardIcon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 12px;
+}
+
+.cardTitle {
+    margin-bottom: auto;
+    color: $main-dark;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+}
+
+.leftBtn {
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        transform: translateX(-5px);
+    }
+}
+
+.rightBtn {
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        transform: translateX(5px);
+    }
+}

@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 60px;
-    border: 1px solid $main-cyan;
 }
 
 .navWrapper {
@@ -16,7 +15,7 @@
 }
 
 .navItem {
-    color: rgb(0, 0, 0);
+    color: $main-dark;
     font-family: "Inter";
     font-size: 14px;
     font-weight: 400;

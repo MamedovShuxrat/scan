@@ -1,14 +1,18 @@
+import Footer from "./components/footer/Footer"
 import Header from "./components/Header/Header"
+import MainPage from "./pages/MainPage/MainPage"
 import Routers from "./router/Routers"
 
 
 function App() {
 
-  return (
-    <div className="container">
-      <Header />
+  return (<>
+    <Header />
+    <MainPage>
       <Routers />
-    </div>
+    </MainPage>
+    <Footer />
+  </>
   )
 }
 

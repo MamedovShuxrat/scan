@@ -3,32 +3,33 @@ import { Link } from 'react-router-dom';
 import styles from './header.module.scss'
 import mainLogo from '../../assets/icons/main-logo.svg';
 import LoginWindow from '../Auth/LoginWindow';
-
+import UserWindow from '../Auth/UserWindow';
 const Header = () => {
-    const isAuth = true;
+    const isAuth = false;
 
     return (
-        <header className={styles.header}>
-            <Link to="/">
-                <img width={110} height={110} src={mainLogo} alt="main logo" />
-            </Link>
+        <div className="container">
+            <header className={styles.header}>
+                <Link to="/">
+                    <img width={110} height={110} src={mainLogo} alt="main logo" />
+                </Link>
+                <nav className={styles.nav}>
+                    <ul className={styles.navWrapper}>
+                        <li className={styles.navItem}>
+                            <Link to="/">Главная</Link>
+                        </li>
+                        <li className={styles.navItem}>
+                            <Link to="/tariffs">Тарифы</Link>
+                        </li>
+                        <li className={styles.navItem}>
+                            <Link to="/faq">FAQ</Link>
+                        </li>
+                    </ul>
+                </nav>
 
-            <nav className={styles.nav}>
-                <ul className={styles.navWrapper}>
-                    <li className={styles.navItem}>
-                        <Link to="/">Главная</Link>
-                    </li>
-                    <li className={styles.navItem}>
-                        <Link to="/tariffs">Тарифы</Link>
-                    </li>
-                    <li className={styles.navItem}>
-                        <Link to="/faq">FAQ</Link>
-                    </li>
-                </ul>
-            </nav>
-            <LoginWindow />
-
-        </header>
+                {isAuth ? <UserWindow /> : <LoginWindow />}
+            </header >
+        </div>
     );
 };
 
