@@ -1,0 +1,26 @@
+@font-face {
+    font-display: swap;
+    font-family: 'Ferry';
+    font-style: normal;
+    font-weight: 900;
+    src: url('/src/assets/fonts/ferry-black.woff2') format('woff2');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/inter-v18-latin-regular.woff2') format('woff2');
+}
+
+$main-fonts: 'Inter';
+$second-fonts: 'Ferry';
+
+$main-cyan: #029491;
+$main-dark: #000000;
+$main-white: #FFFFFF;
+
+$accent-yellow: #FFB64F;
+$accent-cyan: #7CE3E1;
+$accent-purple: #5970FF;
