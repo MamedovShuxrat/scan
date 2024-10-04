@@ -1,0 +1,201 @@
+@import '../../assets/styles/variables.scss';
+
+.traffics {
+    @include sectionPadding;
+}
+
+.trafficsTitle {
+    @include sectionTitle;
+    color: $main-dark;
+    margin-bottom: 66px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 30px;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    background: rgb(255, 255, 255);
+    width: calc(33% - 30px);
+}
+
+
+.cardWrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 25px 30px;
+    min-height: 406px;
+
+}
+
+.cardTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 10px 25px 25px;
+
+    &.beginner {
+        background-color: #FFB64F;
+        color: black;
+    }
+
+    &.pro {
+        background-color: #7CE3E1;
+        color: black;
+    }
+
+    &.business {
+        background-color: #000000;
+        color: white;
+
+    }
+}
+
+.cardTopImg {
+    @include cardTopIcon;
+    object-fit: contain;
+}
+
+.cardtitle {
+    @include fsz30;
+    color: inherit;
+    margin-bottom: 10px;
+}
+
+.cardDesc {
+    @include fsz18;
+    color: inherit;
+}
+
+
+.priceWrap {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    margin-bottom: 13px;
+}
+
+.newPrice {
+    color: $main-dark;
+    @include fsz30;
+    text-wrap: nowrap;
+}
+
+.oldPrice {
+    color: $main-dark;
+    @include fsz25;
+    text-align: left;
+    text-decoration-line: line-through;
+    opacity: 0.5;
+    text-wrap: nowrap;
+
+}
+
+.priceDesc {
+    color: $main-dark;
+    @include fsz18;
+}
+
+.cardContent {
+    margin-top: auto;
+}
+
+.cardContentTitle {
+    color: $main-dark;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.cardContentItem {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    margin-bottom: 5px;
+
+}
+
+.cardBtn {
+    margin-top: 55px;
+    border-radius: 5px;
+
+    background: $accent-purple ;
+    color: $main-white ;
+    border: 1px solid $accent-purple ;
+    padding: 18px;
+    width: 100%;
+    display: block;
+    text-align: center;
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    transition: all ease-in-out .3s;
+
+    &:hover {
+        background: $main-white ;
+        color: $accent-purple ;
+    }
+
+    &.beginner {
+        background: #D2D2D2;
+        color: $main-dark;
+        border: 1px solid #D2D2D2;
+
+        &:hover {
+            background: $main-white ;
+            color: $main-dark ;
+        }
+    }
+}
+
+
+@media (max-width: 1120px) {
+
+    .cards {
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+    }
+
+    .card {
+        width: calc(50% - 30px);
+    }
+}
+
+@media (max-width: 768px) {
+    .trafficsTitle {
+        margin-bottom: 40px;
+    }
+
+    .priceDesc {
+        font-size: 16px;
+    }
+
+    .cardWrapper {
+        padding: 15px 20px;
+    }
+
+    .cardBtn {
+        font-size: 16px;
+    }
+
+}
+
+@media (max-width: 675px) {
+    .card {
+        width: calc(100% - 60px);
+    }
+}
+
+@media (max-width: 475px) {
+    .card {
+        width: 100%;
+    }
+}

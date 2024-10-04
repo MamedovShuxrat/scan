@@ -18,10 +18,7 @@
 .userViewRegister {
     color: $main-dark;
     font-family: 'Inter';
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 17px;
-    letter-spacing: 1%;
+    @include fsz14;
     opacity: 0.4;
 }
 
@@ -33,10 +30,7 @@
 
     color: $main-dark;
     font-family: 'Inter';
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 17px;
-    letter-spacing: 1%;
+    @include fsz14;
     text-align: left;
 
     transition: background ease-in-out .4s;
@@ -54,32 +48,33 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    column-gap: 124px;
+    gap: 24px;
 }
 
 .userLimit {
     border-radius: 5px;
     background: rgba(217, 217, 217, .3);
-    padding: 14px 10px 18px;
+    padding: 14px 10px;
+
+
+    &.open {
+        background: $main-white;
+    }
 
 }
 
 .limitUsed {
     color: $main-dark;
     font-family: 'Inter';
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 12px;
-    letter-spacing: 0%;
+    display: flex;
+    @include fsz10;
+    text-wrap: nowrap;
 
     span {
+        display: inline;
         color: $main-dark;
         font-family: 'Inter';
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 17px;
-        letter-spacing: 0%;
-        text-align: left;
+        @include fsz14;
         margin-left: 9px;
 
     }
@@ -88,20 +83,13 @@
 .limitAll {
     color: $main-dark;
     font-family: 'Inter';
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 12px;
-    letter-spacing: 0%;
+    @include fsz10;
     text-align: end;
 
     span {
         color: #8AC540;
         font-family: 'Inter';
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 17px;
-        letter-spacing: 0%;
-        text-align: left;
+        @include fsz14;
         margin-left: 9px;
     }
 }
@@ -122,14 +110,53 @@
 .logout {
     color: $main-dark;
     font-family: 'Inter';
-    font-size: 10px;
-    font-weight: 400;
-    line-height: 12px;
-    letter-spacing: 0%;
-    text-align: left;
+    @include fsz10;
+    opacity: .4;
 }
 
 .userImg {
     margin-left: 4px;
     border-radius: 50%;
+}
+
+.userName {
+    @include fsz14;
+    text-wrap: nowrap;
+}
+
+@media (max-width: 768px) {
+
+    .userView {
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 110px;
+
+        span {
+            display: none;
+        }
+    }
+
+    .userViewLogin {
+        padding: 2px 7px;
+        font-size: 12px;
+        width: 100%;
+        text-align: center;
+
+    }
+
+    .userViewRegister {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 575px) {
+
+    .userWindow {
+        flex-direction: column;
+    }
+
+    .userView {
+        margin: 0 auto;
+        max-width: 150px;
+    }
 }

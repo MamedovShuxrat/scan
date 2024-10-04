@@ -2,8 +2,7 @@
 
 .footer {
     background: $main-cyan;
-    padding: 25px 45px 25px 60px;
-
+    @include sectionPadding;
 }
 
 .footerInner {
@@ -19,17 +18,15 @@
 
     span {
         display: block;
-        margin-top: 21px;
+        margin-top: 10px;
         color: $main-white ;
         font-family: 'Inter';
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 17px;
+        @include fsz14;
     }
 }
 
 .footerCopy {
-    max-width: 33%;
+    max-width: 100%;
     transition: opacity .8s ease-in-out;
     opacity: 0;
     font-size: 12px;
@@ -37,6 +34,7 @@
     line-height: 17px;
     color: $accent-cyan;
     text-align: center;
+    flex-grow: 1;
 
     &:hover {
         opacity: 1;
@@ -52,11 +50,19 @@
     }
 }
 
+.footerLogo {
+    @include logoSize;
+}
+
 
 .footerLink {
     color: $main-white ;
     font-family: 'Inter';
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 17px;
+    @include fsz14;
+}
+
+@media (max-width: 475px) {
+    .footerCopy {
+        font-size: 10px;
+    }
 }

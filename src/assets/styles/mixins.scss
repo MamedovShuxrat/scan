@@ -1,0 +1,137 @@
+@mixin sectionTitle {
+    font-family: 'Ferry';
+    font-size: clamp(20px, 4vw, 45px);
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+@mixin fsz30 {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 36px;
+    text-align: left;
+
+    @media (max-width: 768px) {
+        font-size: 20px;
+        line-height: 30px;
+
+    }
+
+    @media (max-width: 575px) {
+        font-size: 16px;
+        line-height: 24px;
+
+    }
+}
+
+@mixin fsz25 {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 30px;
+
+    @media (max-width: 768px) {
+        font-size: 18px;
+        line-height: 25px;
+
+    }
+
+    @media (max-width: 575px) {
+        font-size: 14px;
+        line-height: 20px;
+
+    }
+}
+
+@mixin fsz18 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+
+    @media (max-width: 768px) {
+        font-size: 16px;
+    }
+
+    @media (max-width: 575px) {
+        font-size: 14px;
+    }
+}
+
+
+@mixin fsz14 {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+
+    @media (max-width: 475px) {
+        font-size: 12px;
+    }
+
+}
+
+@mixin fsz10 {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+}
+
+@mixin sectionPadding {
+    padding: 25px 50px;
+
+    @media (max-width: 768px) {
+        padding: 20px 25px;
+    }
+
+    @media (max-width: 475px) {
+        padding: 15px 20px;
+    }
+
+    @media (max-width: 375px) {
+        padding: 10px 15px;
+    }
+}
+
+@mixin cardIcon {
+    width: 64px;
+    height: 64px;
+
+    @media (max-width: 768px) {
+        width: 50px;
+        height: 50px;
+    }
+
+    @media (max-width: 575px) {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@mixin cardTopIcon {
+    width: 80px;
+    height: 80px;
+
+    @media (max-width: 768px) {
+        width: 60px;
+        height: 60px;
+    }
+
+    @media (max-width: 575px) {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@mixin logoSize {
+    width: 110px;
+    height: 40px;
+
+    @media (max-width: 768px) {
+        width: 80px;
+        height: 30px;
+    }
+
+    @media (max-width: 575px) {
+        width: 60px;
+        height: 30px;
+    }
+}

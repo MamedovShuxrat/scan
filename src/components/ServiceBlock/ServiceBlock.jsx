@@ -15,8 +15,8 @@ const ServiceBlock = () => {
 
                 {isAuth && <Link className={styles.serviceBtn} to="/">Запросить данные</Link>}
             </div>
-            <div className={styles.subtitle}>
-                <img src={servicesImg} alt="servicesImg" />
+            <div className={styles.serviceVisuial}>
+                <img className={styles.serviceImg} src={servicesImg} alt="servicesImg" />
             </div>
         </section>
     )

@@ -2,13 +2,13 @@ import React from 'react'
 import styles from './loginWindow.module.scss'
 
 import avatar from '../../assets/images/avatar.jpg'
-const UserWindow = () => {
+const UserWindow = ({ isMenuOpen }) => {
     const UsedByCompanies = 34
     const LimitOnCompanies = 100
     const isLoading = true
     return (
         <div className={styles.userWindow}>
-            <div className={styles.userLimit}>
+            <div className={`${styles.userLimit} ${isMenuOpen ? styles.open : ''}`}>
                 {isLoading && <>
                     <div className={styles.limitUsed}>
                         Использовано компаний <span>{UsedByCompanies}</span>

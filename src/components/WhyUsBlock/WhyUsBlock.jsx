@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './whyUsBlock.module.scss'
 import leftBtn from '../../assets/icons/common/left.svg'
 import rightBtn from '../../assets/icons/common/right.svg'
@@ -46,8 +46,24 @@ const SLIDESDATA = [
 
 const WhyUsBlock = () => {
     const [currentIndex, setCurrentIndex] = useState(0)
-    const visibleslides = 3
+    const [visibleslides, setVisibeslides] = useState(3)
 
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth <= 575) {
+                setVisibeslides(1)
+            } else if (window.innerWidth <= 768) {
+                setVisibeslides(2)
+            } else {
+                setVisibeslides(3)
+            }
+        }
+        handleResize()
+        window.addEventListener('resize', handleResize)
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
     const handlePrevSlide = () => {
         setCurrentIndex((prev) => (prev === 0 ? SLIDESDATA.length - visibleslides : prev - 1))
     }
