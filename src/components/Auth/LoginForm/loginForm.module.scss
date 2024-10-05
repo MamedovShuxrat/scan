@@ -1,0 +1,166 @@
+@import '../../../assets/styles/variables.scss';
+
+// login form component
+.form {
+    border-radius: 10px;
+
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+    background: rgb(255, 255, 255);
+    padding: 25px 25px 45px 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formTop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 15px;
+    row-gap: 10px;
+
+    margin-bottom: 10px;
+
+    span {
+        cursor: pointer;
+    }
+}
+
+.formLinkLogin {
+    padding: 0px 50px 8px;
+    color: rgb(199, 199, 199);
+    @include fsz16;
+    border-bottom: 1px solid rgb(199, 199, 199);
+    transition: all .3s ease-in-out;
+
+    &.active {
+        color: rgb(2, 148, 145);
+        border-bottom: 1px solid rgb(2, 148, 145);
+
+    }
+}
+
+.formLinkRegister {
+    padding: 0px 25px 8px;
+    color: rgb(199, 199, 199);
+    @include fsz16;
+
+    border-bottom: 1px solid rgb(199, 199, 199);
+
+    &.active {
+        color: rgb(2, 148, 145);
+        border-bottom: 1px solid rgb(2, 148, 145);
+
+    }
+}
+
+.formInputs {
+    width: 100%;
+    margin-bottom: 20px;
+
+    label {
+        color: rgb(148, 148, 148);
+        @include fsz16;
+        margin-bottom: 15px;
+        display: block;
+    }
+
+}
+
+.formInput {
+    color: $main-dark;
+    @include fsz16;
+    width: 100%;
+    padding: 12px 19px;
+    border-radius: 5px;
+    border: 1px solid $main-dark;
+
+    outline: none;
+
+    &:focus {
+        border: 1px solid $main-cyan;
+        background: rgb(255, 255, 255);
+    }
+
+    &::placeholder {
+        position: absolute;
+        top: 12px;
+        left: 19px;
+        transition: transform 0.3s ease;
+
+    }
+
+    &:focus::placeholder {
+        transform: translateX(-200%);
+    }
+}
+
+.passwordWrapper {
+    position: relative;
+}
+
+.isShowPassword {
+    position: absolute;
+    top: 12px;
+    right: 19px;
+    cursor: pointer;
+}
+
+.loginBtn {
+    border-radius: 5px;
+
+    background: rgb(89, 112, 255);
+    padding: 16px;
+    width: 100%;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.loginRecover {
+    color: rgb(89, 112, 255);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    text-decoration-line: underline;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.loginWith {
+    display: flex;
+    flex-direction: column;
+
+    span {
+        margin-bottom: 15px;
+        color: rgb(148, 148, 148);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+    }
+}
+
+.socialLogin {
+    display: flex;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .form {
+        padding: 25px 15px 20px;
+    }
+
+    .socialLogin {
+
+        a {
+            max-width: calc(33% - 10px);
+
+            img {
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}

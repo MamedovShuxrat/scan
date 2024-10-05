@@ -1,0 +1,82 @@
+@import '../../assets/styles/variables.scss';
+
+.login {
+    @include sectionPadding;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.loginTitle {
+    @include sectionTitle;
+    line-height: 48px;
+    width: 100%;
+}
+
+.loginContent {
+    max-width: 70%;
+}
+
+.loginImg {
+    margin-top: 15px;
+    max-width: 100%;
+}
+
+.loginFormWrapper,
+.loginFormWrapperMobile {
+    max-width: 50%;
+    position: relative;
+
+    &::before {
+        background-image: url('../../assets/icons/login/lock.svg');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        content: '';
+        top: -64px;
+        left: -50px;
+        width: 75px;
+        height: 92px;
+    }
+}
+
+.loginFormWrapperMobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .login {
+        margin-top: 0;
+        justify-content: center;
+    }
+
+    .loginFormWrapperMobile {
+        display: block;
+        max-width: 100%;
+        margin-top: 20px;
+
+        &::before {
+            top: -54px;
+            left: 80px;
+            width: 55px;
+            height: 72px;
+        }
+    }
+
+    .loginFormWrapper {
+        display: none;
+    }
+
+    .loginContent {
+        flex-wrap: wrap;
+        justify-content: center;
+        display: flex;
+        gap: 45px;
+        max-width: 100%;
+    }
+
+    .loginTitle {
+        text-align: center;
+    }
+}

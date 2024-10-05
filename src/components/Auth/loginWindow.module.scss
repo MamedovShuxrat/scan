@@ -1,6 +1,6 @@
 @import '../../assets/styles/variables.scss';
 
-
+// login window component
 .userView {
     display: flex;
     justify-content: space-between;
@@ -43,6 +43,8 @@
         text-fill-color: transparent;
     }
 }
+
+// user window component
 
 .userWindow {
     display: flex;
@@ -122,6 +124,15 @@
 .userName {
     @include fsz14;
     text-wrap: nowrap;
+}
+
+// login form component
+.form {
+    border-radius: 10px;
+
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+    background: rgb(255, 255, 255);
+    padding: 25px 25px 45px 25px;
 }
 
 @media (max-width: 768px) {

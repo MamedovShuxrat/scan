@@ -7,7 +7,7 @@ const LoginWindow = () => {
         <div className={styles.userView}>
             <Link className={styles.userViewRegister} to='#'>Зарегистрироваться</Link>
             <span></span>
-            <Link className={styles.userViewLogin} to='/'>Войти</Link>
+            <Link className={styles.userViewLogin} to='/login'>Войти</Link>
         </div>
     )
 }
