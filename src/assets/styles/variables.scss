@@ -1,3 +1,5 @@
+@import './mixins.scss';
+
 @font-face {
     font-display: swap;
     font-family: 'Ferry';
@@ -24,5 +26,3 @@ $main-white: #FFFFFF;
 $accent-yellow: #FFB64F;
 $accent-cyan: #7CE3E1;
 $accent-purple: #5970FF;
-
-@import './mixins.scss'
