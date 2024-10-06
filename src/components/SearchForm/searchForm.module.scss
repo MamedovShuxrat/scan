@@ -1,0 +1,212 @@
+@import '../../assets/styles/variables.scss';
+
+.search {
+    padding: 30px;
+}
+
+.searchItems {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 15px;
+}
+
+.searchItem {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+
+.searchLabel {
+    display: block;
+    margin-bottom: 30px;
+
+    span {
+        display: block;
+        @include fsz18;
+        color: $main-dark;
+        margin-bottom: 20px;
+    }
+
+    input {
+        display: inline-block;
+        border: 1px solid rgb(199, 199, 199);
+        border-radius: 5px;
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+        background: rgb(255, 255, 255);
+        padding: 8px;
+        outline: none;
+        width: 242px;
+
+        &::placeholder {
+            opacity: 0.4;
+            color: rgb(148, 148, 148);
+            @include fsz14;
+            text-align: center;
+        }
+
+        &:focus {
+            border: 1px solid $main-cyan;
+            background: rgb(255, 255, 255);
+        }
+    }
+
+    input[type="number"] {
+        -moz-appearance: textfield;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    select {
+        width: 242px;
+        padding: 8px;
+        outline: none;
+
+        &:focus {
+            border: 1px solid $main-cyan;
+            background: rgb(255, 255, 255);
+        }
+    }
+
+    .inputWrapper {
+        display: flex;
+        gap: 10px;
+
+        input {
+            width: 160px;
+        }
+    }
+}
+
+.checkboxItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    column-gap: 15px;
+    color: rgba(0, 0, 0, .4);
+
+}
+
+.checkbox,
+.checkboxLabel {
+    color: rgba(0, 0, 0, .4);
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    border: 1px solid rgba(0, 0, 0, .4);
+    cursor: pointer;
+    position: relative;
+
+    &:checked {
+        background-image: url('../../assets/icons/common/checked.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+}
+
+.checkbox:checked+.checkboxLabel {
+    color: $main-dark;
+}
+
+.checkboxLabel {
+    @include fsz18;
+    cursor: pointer;
+}
+
+.searchBtn {
+    margin-top: auto;
+    padding: 16px;
+    border-radius: 5px;
+
+    background: rgb(89, 112, 255);
+
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 27px;
+    text-align: center;
+
+    &:disabled {
+        background: rgba(89, 112, 255, .4);
+        cursor: default;
+
+    }
+}
+
+.required {
+    color: rgb(148, 148, 148);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    margin-top: 10px;
+}
+
+@media(max-width: 800px) {
+    .search {
+        padding: 30px 20px;
+    }
+}
+
+@media(max-width: 768px) {
+    .search {
+        padding: 20px 10px;
+    }
+
+    .searchLabel {
+        .inputWrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            input {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media(max-width: 625px) {
+    .searchItems {
+        flex-wrap: wrap;
+        justify-content: center;
+        column-gap: 15px;
+    }
+
+    .searchItem {
+        width: 100%;
+    }
+
+    .searchLabel {
+        margin-bottom: 10px;
+
+        span {
+            margin-bottom: 10px;
+        }
+
+        .inputWrapper {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+
+            input {
+                width: 100%;
+            }
+        }
+    }
+
+    .searchMainImg {
+        max-width: 100%;
+    }
+}
+
+@media(max-width: 425px) {
+    .searchLabel {
+        .inputWrapper {
+            flex-wrap: wrap;
+        }
+    }
+}

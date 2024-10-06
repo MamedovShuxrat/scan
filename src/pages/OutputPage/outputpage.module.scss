@@ -1,0 +1,251 @@
+@import '../../assets/styles/variables.scss';
+
+.output {
+    @include sectionPadding;
+}
+
+.outputTopWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.outputTextWrapper {
+    width: 540px;
+}
+
+.outputTitle {
+    @include sectionTitle;
+    margin-bottom: 36px;
+}
+
+.subtitle {
+    color: $main-dark;
+    font-family: 'Inter';
+    font-size: clamp(14px, 1.5vw, 20px);
+    font-weight: 400;
+    line-height: clamp(14px, 2.5vw, 20px);
+    padding-right: 30px;
+
+}
+
+.outputTopImg {
+    max-width: 50%;
+    object-fit: contain;
+}
+
+
+.mainTitle {
+    color: $main-dark;
+    font-family: 'Ferry';
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 36px;
+    margin-bottom: 15px;
+}
+
+.mainDesc {
+    color: rgb(148, 148, 148);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.outputResultWrapper {
+    display: flex;
+    margin-top: 25px;
+
+
+}
+
+.resultWrapper {
+    display: flex;
+    border: 2px solid rgb(2, 148, 145);
+    border-radius: 10px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+}
+
+.resultTitleWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px 0px 0px 10px;
+    background: rgb(2, 148, 145);
+    padding: 17px;
+
+    span {
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 24px;
+        margin-bottom: 26px;
+    }
+}
+
+.resultList {
+    display: flex;
+    padding: 17px 21px 17px 0;
+}
+
+.resultItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 17px;
+    border-right: 1px solid #ccc;
+
+    span {
+        color: $main-dark;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 22px;
+        margin-bottom: 26px;
+    }
+}
+
+.outputDocs {
+    margin-top: 100px;
+}
+
+.docsTitle {
+    color: $main-dark;
+    font-family: 'Ferry';
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 36px;
+}
+
+.docsWrapper {
+    display: flex;
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.docsItem {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 30px 35px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    background: rgb(255, 255, 255);
+}
+
+.docsDateWrapper {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.docsDate,
+.docsDateLink {
+    @include fsz16;
+    color: rgb(148, 148, 148);
+}
+
+.docsDateLink {
+    text-decoration: underline;
+}
+
+.docsCardTitle {
+    @include fsz25;
+    margin-bottom: 15px;
+}
+
+.docsTag {
+    padding: 4px 11px;
+    color: $main-dark;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    border-radius: 5px;
+    background: rgb(255, 182, 79);
+    display: inline-block;
+    margin-bottom: 15px;
+
+    &.tech {
+        background: rgb(255, 182, 79);
+    }
+
+    &.announcement {
+        background: rgb(89, 112, 255);
+    }
+
+    &.digest {
+        background: rgb(124, 227, 225);
+    }
+}
+
+.docsVisual {
+    border-radius: 10px;
+    width: 100%;
+    height: 160px;
+    margin-bottom: 20px;
+    margin-top: auto;
+
+}
+
+.docsImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.docsText {
+    margin-top: auto;
+    @include fsz16;
+    color: $main-dark;
+    opacity: .5;
+    margin-bottom: 30px;
+}
+
+.docsSourceWrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.docsSource {
+    border-radius: 5px;
+    border: 1px solid rgb(124, 227, 225);
+    background: rgb(124, 227, 225);
+    padding: 14px 30px;
+    @include fsz16;
+
+    transition: all .3s ease-in-out;
+
+    &:hover {
+        background: $main-white;
+    }
+}
+
+.docsTotalWords {
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.docsBtnMore {
+    display: block;
+    margin: 40px auto 100px;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 27px;
+
+    border-radius: 5px;
+
+    background: rgb(89, 112, 255);
+    border: 1px solid rgb(89, 112, 255);
+    padding: 15px 50px;
+
+    transition: all .3s ease-in-out;
+
+    &:hover {
+        background: $main-white;
+        color: rgb(89, 112, 255);
+    }
+}

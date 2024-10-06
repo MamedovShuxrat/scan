@@ -13,7 +13,7 @@ const ServiceBlock = () => {
                     Комплексный анализ публикаций, получение данных в формате PDF на электронную почту.
                 </h6>
 
-                {isAuth && <Link className={styles.serviceBtn} to="/">Запросить данные</Link>}
+                {isAuth && <Link to="/search" className={styles.serviceBtn} >Запросить данные</Link>}
             </div>
             <div className={styles.serviceVisuial}>
                 <img className={styles.serviceImg} src={servicesImg} alt="servicesImg" />
