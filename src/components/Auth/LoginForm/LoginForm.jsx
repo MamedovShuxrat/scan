@@ -1,13 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './loginForm.module.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../../../store/slices/authSlice'
 
 import googleIcon from '../../../assets/icons/login/google.svg'
 import facebookIcon from '../../../assets/icons/login/facebook.svg'
 import yndIcon from '../../../assets/icons/login/ynd.svg'
 import eyesIcon from '../../../assets/icons/login/eye.svg'
+import { useNavigate } from 'react-router-dom'
 
 const LoginForm = () => {
-    const [login, setLogin] = useState('')
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { isAuthenticated } = useSelector((state) => state.auth)
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/')
+        }
+    }, [isAuthenticated, navigate])
+    const [loginfield, setLogin] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
 
@@ -17,7 +29,6 @@ const LoginForm = () => {
         email: '',
         password: '',
     })
-    console.log(registerData);
 
     const handleLoginChange = (e) => {
         setLogin(e.target.value)
@@ -40,6 +51,13 @@ const LoginForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        if (loginfield && password) {
+            console.log(loginfield, password)
+            dispatch(login({ login: loginfield, password: password }))
+
+        } else {
+            console.log('ошибка где-то тут');
+        }
     }
 
     const handleRegisterSubmit = (e) => {
@@ -67,7 +85,7 @@ const LoginForm = () => {
                 <label>Логин или номер телефона:</label>
                 <input
                     type="text"
-                    value={login}
+                    value={loginfield}
                     onChange={handleLoginChange}
                     placeholder='+79126532142'
                     className={styles.formInput}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styles from './header.module.scss'
 import mainLogo from '../../assets/icons/main-logo.svg';
 import secondLogo from '../../assets/icons/second-logo.svg';
@@ -7,8 +8,7 @@ import LoginWindow from '../Auth/LoginWindow';
 import UserWindow from '../Auth/UserWindow';
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const isAuth = false;
-
+    const { isAuthenticated } = useSelector((state) => state.auth)
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
     }
@@ -30,7 +30,7 @@ const Header = () => {
                             <Link to="/faq">FAQ</Link>
                         </li>
                     </ul>
-                    {isAuth ? <UserWindow isMenuOpen={isMenuOpen} /> : <LoginWindow />}
+                    {isAuthenticated ? <UserWindow isMenuOpen={isMenuOpen} /> : <LoginWindow />}
                 </nav>
                 <div className={`${styles.burgerMenu} ${isMenuOpen ? styles.open : ''}`} onClick={toggleMenu}>
                     <span></span>
