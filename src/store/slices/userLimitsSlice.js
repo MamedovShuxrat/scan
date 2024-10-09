@@ -13,7 +13,6 @@ export const fetchUserInfo = createAsyncThunk(
     }
 )
 
-
 const companyLimitsSlice = createSlice({
     name: 'companyLimits',
     initialState: {

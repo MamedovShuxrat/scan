@@ -6,7 +6,6 @@ import { Toaster } from 'react-hot-toast'
 import store from './store/store.js'
 import App from './App.jsx'
 import './index.scss'
-
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>
