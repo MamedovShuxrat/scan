@@ -32,7 +32,8 @@ const Header = () => {
                     </ul>
                     {isAuthenticated ? <UserWindow isMenuOpen={isMenuOpen} /> : <LoginWindow />}
                 </nav>
-                <div className={`${styles.burgerMenu} ${isMenuOpen ? styles.open : ''}`} onClick={toggleMenu}>
+                <div className={`${styles.burgerMenu} ${isMenuOpen ? styles.open : ''}`}
+                    onClick={toggleMenu}>
                     <span></span>
                     <span></span>
                     <span></span>

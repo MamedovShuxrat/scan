@@ -4,8 +4,9 @@ import styles from './loginWindow.module.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../../store/slices/authSlice'
 import { useNavigate } from 'react-router-dom'
-import UserInfoLoader from '../utils/userInfoLoader'
+import LazyUserInfoLoader from '../utils/LazyUserInfoLoader'
 import avatar from '../../assets/images/avatar.jpg'
+import toast from 'react-hot-toast'
 
 const UserWindow = ({ isMenuOpen }) => {
     const limitOnCompanies = useSelector((state) => state.companyLimits.usedCompanyCount)
@@ -16,12 +17,13 @@ const UserWindow = ({ isMenuOpen }) => {
 
     const handlelogout = () => {
         dispatch(logout())
+        toast.success('Вы вышли из системы!')
         navigate('/')
     }
     return (
         <div className={styles.userWindow}>
             <div className={`${styles.userLimit} ${isMenuOpen ? styles.open : ''}`}>
-                {loading ? <UserInfoLoader /> : <>
+                {loading ? <LazyUserInfoLoader /> : <>
                     <div className={styles.limitUsed}>
                         Использовано компаний <span>{usedByCompanies}</span>
                     </div>

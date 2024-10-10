@@ -19,9 +19,18 @@ const LoginForm = () => {
             navigate('/')
         }
     }, [isAuthenticated, navigate])
+
     const [loginfield, setLogin] = useState('')
     const [password, setPassword] = useState('')
     const [showPassword, setShowPassword] = useState(false)
+    const [isButtonDisabled, setIsbuttonDisabled] = useState(true)
+    useEffect(() => {
+        if (loginfield.trim() !== '' && password.trim() !== '') {
+            setIsbuttonDisabled(false)
+        } else {
+            setIsbuttonDisabled(true)
+        }
+    }, [loginfield, password])
 
     const [isLogin, setIsLogin] = useState(true)
     const [registerData, setRegisterData] = useState({
@@ -105,7 +114,12 @@ const LoginForm = () => {
                         <img onClick={handleShowPassword} className={styles.isShowPassword} src={eyesIcon} alt="eyesIcon" />
                     </div>
                 </div>
-                <button className={styles.loginBtn} onClick={handleSubmit} >Войти</button>
+                <button
+                    className={`${styles.loginBtn} ${isButtonDisabled ? styles.disabled : ''}`}
+                    onClick={handleSubmit}
+                    disabled={isButtonDisabled}>
+                    Войти
+                </button>
                 <a href="#" className={styles.loginRecover}>Восстановить пароль</a>
                 <div className={styles.loginWith}>
                     <span>Войти через:</span>

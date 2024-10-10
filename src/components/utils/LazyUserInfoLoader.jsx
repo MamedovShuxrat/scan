@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentLoader from "react-content-loader";
 
-const UserInfoLoader = () => (
+const LazyUserInfoLoader = () => (
     <ContentLoader
         speed={1}
         width={157}
@@ -18,4 +18,4 @@ const UserInfoLoader = () => (
     </ContentLoader>
 );
 
-export default UserInfoLoader;
+export default LazyUserInfoLoader;

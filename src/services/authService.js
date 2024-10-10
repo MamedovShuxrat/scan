@@ -19,10 +19,13 @@ export const loginUser = async (login, password) => {
         success: "Успешный вход в систему!",
         error: "Ошибка входа"
       })
-    console.log(response.data, 'loginData');
 
     return response.data
   } catch (error) {
+    console.log(error, 'errrrr');
+
+    const errorMessage = error.response?.data?.message || 'Не удалось войти в систему.'
+    toast.error(errorMessage);
     throw error
   }
 }

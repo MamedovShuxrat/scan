@@ -5,7 +5,6 @@ const getUserData = `${API_URL}/api/v1/account/info/`
 
 export const getUserInfo = async () => {
   const token = localStorage.getItem('token')
-  console.log(token, 'token');
   try {
     const response = await axios.get(getUserData, {
       headers: {

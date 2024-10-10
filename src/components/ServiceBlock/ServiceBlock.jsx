@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom';
 
 const ServiceBlock = () => {
     const { isAuthenticated } = useSelector((state) => state.auth)
-    console.log(isAuthenticated, 'АВторизован?');
-
     return (
         <section className={styles.service}>
             <div className={styles.serviceContent} >

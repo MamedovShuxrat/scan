@@ -7,7 +7,14 @@ export const login = createAsyncThunk(
     async ({ login, password }, { dispatch, rejectWithValue }) => {
         try {
             const data = await loginUser(login, password)
-            localStorage.setItem('token', data.accessToken)
+            const { accessToken, expire } = data
+
+            localStorage.setItem('token', accessToken)
+            localStorage.setItem('expire', expire)
+
+            dispatch(setToken(accessToken))
+            dispatch(setTokenExpire(expire))
+
             await dispatch(fetchUserInfo())
             return data
         } catch (error) {
@@ -19,6 +26,7 @@ export const login = createAsyncThunk(
 const initialState = {
     user: null,
     token: null,
+    expire: null,
     isAuthenticated: false,
     loading: false,
     error: null
@@ -28,11 +36,20 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
+        setToken(state, action) {
+            state.token = action.payload
+            state.isAuthenticated = true
+        },
+        setTokenExpire(state, action) {
+            state.expire = action.payload
+        },
         logout(state) {
             state.user = null
             state.token = null
+            state.expire = null
             state.isAuthenticated = false
             localStorage.removeItem('token')
+            localStorage.removeItem('expire')
         }
     },
     extraReducers: (builder) => {
@@ -42,8 +59,6 @@ const authSlice = createSlice({
                 state.error = null
             })
             .addCase(login.fulfilled, (state, action) => {
-                state.token = action.payload.accessToken
-                state.isAuthenticated = true
                 state.loading = false
                 state.error = null
             })
@@ -54,6 +69,6 @@ const authSlice = createSlice({
     }
 })
 
-export const { logout } = authSlice.actions
+export const { setToken, setTokenExpire, logout } = authSlice.actions
 
 export default authSlice.reducer
