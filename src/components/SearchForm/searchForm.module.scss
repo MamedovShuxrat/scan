@@ -22,10 +22,44 @@
     margin-bottom: 30px;
 
     span {
-        display: block;
+        display: flex;
+        gap: 2px;
         @include fsz18;
         color: $main-dark;
         margin-bottom: 20px;
+        height: 20px;
+
+        .footnoteInvalid {
+            color: red;
+            position: relative;
+
+            &::before {
+                content: '*';
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            ~input[type="number"],
+            ~input[type="date"],
+            ~select {
+                border: 1px solid red;
+            }
+        }
+
+        .footnoreValid {
+            position: relative;
+
+            &::before {
+                content: '';
+                width: 20px;
+                height: 20px;
+                appearance: none;
+                background-image: url('../../assets/icons/common/checked.svg');
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
     }
 
     input {
@@ -143,7 +177,40 @@
     font-weight: 400;
     line-height: 17px;
     margin-top: 10px;
+    display: flex;
+    gap: 2px;
+
+    .footnoteInvalid {
+        color: red;
+        position: relative;
+        height: 20px;
+
+        &::before {
+            content: '*';
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    .footnoreValid {
+        position: relative;
+        height: 20px;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            appearance: none;
+            background-image: url('../../assets/icons/common/checked.svg');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
 }
+
+
 
 @media(max-width: 800px) {
     .search {

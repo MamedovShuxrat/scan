@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { fetchHistograms } from "../../services/fetchHistogramsService";
+const token = localStorage.getItem('token')
 
 export const getHistograms = createAsyncThunk(
     'histograms/getHistograms',
     async (params, { rejectWithValue }) => {
         try {
-            const data = await fetchHistograms(params)
+            const data = await fetchHistograms(params, token)
             return data
         } catch (error) {
             return rejectWithValue(error.message)
