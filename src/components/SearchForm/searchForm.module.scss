@@ -83,6 +83,12 @@
             border: 1px solid $main-cyan;
             background: rgb(255, 255, 255);
         }
+
+        &.inputInvalid {
+            &:user-invalid {
+                border: 1px solid red;
+            }
+        }
     }
 
     input[type="number"] {
@@ -108,6 +114,12 @@
 
         input {
             width: 160px;
+
+            &.inputInvalid {
+                &:user-invalid {
+                    border: 1px solid red;
+                }
+            }
         }
     }
 }

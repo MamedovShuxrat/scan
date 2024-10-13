@@ -2,141 +2,84 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const API_URL = import.meta.env.VITE_API_URL
-const fetchHistogramsUrl = `${API_URL}/api/v1/objectsearch/histograms/`
+const HISTOGRAMS_API_URL = `${API_URL}/api/v1/objectsearch/histograms/`
 
-// export const fetchHistograms = async (params, token) => {
-//     try {
-//         const response = await toast.promise(
-//             axios.post(fetchHistogramsUrl, {
-//                 issueDateInterval: {
-//                     startDate: params.startDate,
-//                     endDate: params.endDate,
-//                 },
-//                 searchContext: {
-//                     targetSearchEntitiesContext: {
-//                         targetSearchEntities: [
-//                             {
-//                                 type: 'company',
-//                                 sparkId: null,
-//                                 entityId: null,
-//                                 inn: params.inn,
-//                                 maxFullness: params.maxFullness,
-//                                 inBusinessNews: params.inBusinessNews,
-//                             }
-//                         ],
-//                         onlyMainRole: params.onlyMainRole,
-//                         tonality: params.tonality,
-//                         onlyWithRiskFactors: params.onlyWithRiskFactors,
-//                         riskFactors: {
-//                             and: [],
-//                             or: [],
-//                             not: []
-//                         },
-//                         themes: {
-//                             and: [],
-//                             or: [],
-//                             not: []
-//                         }
-//                     },
-//                     themesFilter: {
-//                         and: [],
-//                         or: [],
-//                         not: []
-//                     }
-//                 },
-//                 searchArea: {
-//                     includedSources: [],
-//                     excludedSources: [],
-//                     includedSourceGroups: [],
-//                     excludedSourceGroups: []
-//                 },
-//                 attributeFilters: {
-//                     excludeTechNews: !params.excludeTechNews,
-//                     excludeAnnouncements: !params.excludeAnnouncements,
-//                     excludeDigests: !params.excludeDigests
-//                 },
-//                 similarMode: 'duplicates',
-//                 limit: params.limit || 1000,
-//                 sortType: 'sourceInfluence',
-//                 sortDirectionType: 'desc',
-//                 intervalType: 'month',
-//                 histogramTypes: ['totalDocuments', 'riskFactors'],
-//                 headers: {
-//                     Authorization: `Bearer ${token}`
-//                 }
-//             }))
-//         console.log(response, 'fetch');
+// заполнили формы
+// сформировали параметры запроса на основе данных формы (отдельная функция)
+// передали параметры в функции для получения гистограм и публикаций
+// вызвали функции через Promise.all
+// отобразили результаты на новой странице
 
-//         return response.data;
-//     } catch (error) {
-//         throw error
-//     }
-// }
+// fetch publications list
 
-export const fetchHistograms = async (params, token) => {
+export const fetchHistograms = async ({
+    inn,
+    tonality,
+    startDate,
+    endDate,
+    limit,
+    maxFullnes,
+    inBusinessNews,
+    onlyMainRole,
+    onlyWithRiskFactors,
+    // excludeTechNews,
+    // excludeAnnouncements,
+    // excludeDigests
+}) => {
+    const token = localStorage.getItem('token')
+
     try {
         const response = await toast.promise(
-            axios.post(fetchHistogramsUrl, {
-                issueDateInterval: {
-                    startDate: params.startDate,
-                    endDate: params.endDate,
-                },
-                searchContext: {
-                    targetSearchEntitiesContext: {
-                        targetSearchEntities: [
-                            {
-                                type: 'company',
-                                sparkId: null,
-                                entityId: null,
-                                inn: params.inn,
-                                maxFullness: params.maxFullness,
-                                inBusinessNews: params.inBusinessNews,
-                            }
-                        ],
-                        onlyMainRole: params.onlyMainRole,
-                        tonality: params.tonality,
-                        onlyWithRiskFactors: params.onlyWithRiskFactors,
-                        riskFactors: {
-                            and: [],
-                            or: [],
-                            not: []
-                        },
-                        themes: {
-                            and: [],
-                            or: [],
-                            not: []
+            axios.post(
+                HISTOGRAMS_API_URL,
+                {
+                    issueDateInterval: {
+                        startDate: startDate,
+                        endDate: endDate,
+                    },
+                    searchContext: {
+                        targetSearchEntitiesContext: {
+                            targetSearchEntities: [
+                                {
+                                    type: 'company',
+                                    sparkId: null,
+                                    entityId: null,
+                                    inn: inn,
+                                    maxFullness: maxFullnes,
+                                    inBusinessNews: inBusinessNews,
+                                }
+                            ],
+                            onlyMainRole: onlyMainRole,
+                            tonality: tonality,
+                            onlyWithRiskFactors: onlyWithRiskFactors,
                         }
                     },
-                    themesFilter: {
-                        and: [],
-                        or: [],
-                        not: []
+                    // TODO надо или нет?
+                    // attributeFilters: {
+                    //     excludeTechNews:  excludeTechNews,
+                    //     excludeAnnouncements:  excludeAnnouncements,
+                    //     excludeDigests:  excludeDigests
+                    // },
+                    similarMode: 'none',
+                    limit: parseInt(limit) || 15,
+                    sortType: 'issueDate',
+                    sortDirectionType: 'desc',
+                    intervalType: 'month',
+                    histogramTypes: ['totalDocuments', 'riskFactors']
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     }
-                },
-                searchArea: {
-                    includedSources: [],
-                    excludedSources: [],
-                    includedSourceGroups: [],
-                    excludedSourceGroups: []
-                },
-                attributeFilters: {
-                    excludeTechNews: !params.excludeTechNews,
-                    excludeAnnouncements: !params.excludeAnnouncements,
-                    excludeDigests: !params.excludeDigests
-                },
-                similarMode: 'duplicates',
-                limit: params.limit || 1000,
-                sortType: 'sourceInfluence',
-                sortDirectionType: 'desc',
-                intervalType: 'month',
-                histogramTypes: ['totalDocuments', 'riskFactors'],
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
                 }
-            })
-        )
-        console.log(response, 'fetch');
+            ), {
+            loading: 'Загрузка данных...',
+            success: 'Данные успешно получены!',
+            error: 'Ошибка при загрузке данных'
+        }
+        );
+        console.log(response.data, 'fetch');
 
         if (response.status === 200) {
             return response.data;
@@ -147,4 +90,4 @@ export const fetchHistograms = async (params, token) => {
         console.error(error);
         throw error;
     }
-}
+};

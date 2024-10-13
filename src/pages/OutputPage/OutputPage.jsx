@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './outputpage.module.scss'
 import outputImg from '../../assets/images/output-bg.png'
 import leftBtn from '../../assets/icons/common/left.svg'
 import rightBtn from '../../assets/icons/common/right.svg'
+import { useDispatch, useSelector } from 'react-redux'
 
 import docsImg from '../../assets/images/docs-img-1.png'
 import docsImg1 from '../../assets/images/docs-img-2.png'
@@ -59,6 +60,46 @@ const RESULTDATA = [
 ]
 
 const OutputPage = () => {
+  const dispatch = useDispatch()
+  const status = useSelector((state) => state.histograms.status)
+  const histogramsData = useSelector((state) => state.histograms.data)
+  const [totalDocuments, setTotalDocumenst] = useState(null)
+  console.log(histogramsData, 'redux');
+
+  const transformData = (data) => {
+    const totalDocuments = data?.data?.find(item => item.histogramType === 'totalDocuments')?.data || []
+    const riskFactors = data?.data?.find(item => item.histogramType === 'riskFactors')?.data || []
+
+    return totalDocuments.map((item, index) => ({
+      period: new Date(item.date).toLocaleDateString(),
+      total: item.value,
+      risks: riskFactors[index]?.value || 0
+    }))
+  }
+  useEffect(() => {
+    if (histogramsData) {
+      const totalDocumentsCount = histogramsData?.data?.find(item => item.histogramType === 'totalDocuments')?.data.length || 0
+      setTotalDocumenst(totalDocumentsCount)
+    }
+  }, [histogramsData])
+
+  const renderData = () => {
+    const transformedData = transformData(histogramsData)
+    console.log(transformedData, 'transformedData');
+
+    return transformedData.map((item) => (
+      <div key={item.period} className={styles.resultItem}>
+        <span>{item.period}</span>
+        <span>{item.total}</span>
+        <span>{item.risks}</span>
+      </div>
+    ))
+  }
+
+  // if (status === 'loading') return <div>loading</div>
+
+  console.log(status);
+
   return (
     <main>
       <div className="container">
@@ -75,7 +116,7 @@ const OutputPage = () => {
           <div className={styles.outputMain}>
             <div className={styles.mainTextWrapper}>
               <h3 className={styles.mainTitle}>Общая сводка</h3>
-              <p className={styles.mainDesc}>Найдено 4 221 вариантов</p>
+              <p className={styles.mainDesc}>Найдено {totalDocuments} вариантов</p>
             </div>
             <div className={styles.outputResultWrapper}>
               <button className={styles.resultLeft}><img src={leftBtn} alt="left arrow" /></button>
@@ -86,13 +127,8 @@ const OutputPage = () => {
                   <span>Риски</span>
                 </div>
                 <div className={styles.resultList}>
-                  {RESULTDATA.map((item) => (
-                    <div className={styles.resultItem}>
-                      <span>{item.period}</span>
-                      <span>{item.total}</span>
-                      <span>{item.risks}</span>
-                    </div>
-                  ))}
+
+                  {status === 'loading' ? <div>Идёт загрузка</div> : renderData()}
                 </div>
               </div>
               <button className={styles.resultRight}><img src={rightBtn} alt="right arrow" /></button>

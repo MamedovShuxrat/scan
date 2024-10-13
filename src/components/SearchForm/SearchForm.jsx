@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './searchForm.module.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getHistograms } from '../../store/slices/histogramsSlice'
 import toast from 'react-hot-toast'
@@ -14,6 +14,7 @@ const TONALITY = [
 
 const SearchForm = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [errors, setErrors] = useState({})
   const [isFormValid, setIsFormValid] = useState(false)
   const [inn, setInn] = useState('')
@@ -28,7 +29,10 @@ const SearchForm = () => {
   const [excludeTechNews, setExludeTechNews] = useState(false)
   const [excludeAnnouncements, setExсludeAnnouncements] = useState(false)
   const [excludeDigests, setExcludeDigests] = useState(false)
-
+  function validateInn(inn) {
+    const regex = /^\d{10}$/;
+    return regex.test(inn);
+  }
   const validateFields = () => {
     const newErrors = {}
     const today = new Date().toISOString().split('T')[0]
@@ -37,8 +41,11 @@ const SearchForm = () => {
     const startDateObj = new Date(startDate)
     const endDateObj = new Date(endDate)
 
-    if (!inn || inn.length !== 10) {
-      newErrors.inn = 'ИНН компании должен состоять из 10 цифр'
+    // if (!inn || inn.length !== 10) {
+    //   newErrors.inn = 'ИНН компании должен состоять из 10 цифр'
+    // }
+    if (!inn || !validateInn(inn)) {
+      newErrors.inn = 'ИНН компании должен состоять из 10 цифр';
     }
     if (!startDate) {
       newErrors.startDate = 'Дата начала обязательна'
@@ -61,7 +68,6 @@ const SearchForm = () => {
     if (!limit || limit < 1 || limit > 1000) {
       newErrors.limit = 'Количество документов должно быть от 1 до 1000'
     }
-
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0;
   };
@@ -87,9 +93,15 @@ const SearchForm = () => {
       excludeTechNews,
       excludeAnnouncements,
       excludeDigests
-
     }
-    dispatch(getHistograms(params))
+
+    try {
+      dispatch(getHistograms(params)).unwrap()
+      navigate('/output')
+    } catch (e) {
+      toast.error('Произошла ошибка во время запроса')
+    }
+
   }
   return (
     <div className={styles.search}>
@@ -103,10 +115,10 @@ const SearchForm = () => {
               </span>
             </span>
             <input
-              type="number"
+              className={errors.inn ? styles.inputInvalid : ''}
+              type="text"
               placeholder="10 цифр"
-              min="0"
-              max="9999999999"
+              maxLength={10}
               pattern="\d{10}"
               inputMode="numeric"
               onChange={(e) => setInn(e.target.value)}
@@ -130,7 +142,11 @@ const SearchForm = () => {
                 className={errors.limit ? styles.footnoteInvalid : styles.footnoreValid} >
               </span></span>
             <input
+              className={errors.limit ? styles.inputInvalid : ''}
               type="number"
+              inputMode="numeric"
+              pattern="\d{1000}"
+              maxLength={1000}
               placeholder='От 1 до 1000'
               onChange={(e) => setLimit(e.target.value)}
             />
@@ -143,11 +159,13 @@ const SearchForm = () => {
             </span>
             <div className={styles.inputWrapper}>
               <input
+                className={errors.startDate ? styles.inputInvalid : ''}
                 type="date"
                 placeholder='Дата начала'
                 onChange={(e) => setStartDate(e.target.value)}
               />
               <input
+                className={errors.endDate ? styles.inputInvalid : ''}
                 type="date"
                 placeholder='Дата конца'
                 onChange={(e) => setEndDate(e.target.value)}
@@ -228,11 +246,13 @@ const SearchForm = () => {
               <label htmlFor="checkbox7" className={styles.checkboxLabel}>Включать сводки новостей</label>
             </div>
           </div>
+          {/* <Link to="/output"> */}
           <button onClick={handleSearch}
             className={styles.searchBtn}
             disabled={!isFormValid}    >
-            Поиск <Link to='/output'></Link>
+            Поиск
           </button>
+          {/* </Link> */}
           <span className={styles.required}>
             {isFormValid ? 'Обязательные поля заполнены ' : 'Обязательные к заполнению поля'}
             <span

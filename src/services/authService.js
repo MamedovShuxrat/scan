@@ -2,12 +2,12 @@ import axios from "axios"
 import { toast } from 'react-hot-toast'
 
 const API_URL = import.meta.env.VITE_API_URL
-const authLogin = `${API_URL}/api/v1/account/login/`
+const AUTH_LOGIN_URL = `${API_URL}/api/v1/account/login/`
 
 export const loginUser = async (login, password) => {
   try {
     const response = await toast.promise(
-      axios.post(authLogin, { login, password },
+      axios.post(AUTH_LOGIN_URL, { login, password },
         {
           headers: {
             'Content-Type': 'application/json',
