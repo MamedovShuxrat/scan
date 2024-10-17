@@ -35,8 +35,8 @@
 
 .navItem {
     color: $main-dark;
-    @include fsz14;
     text-align: left;
+    @include fsz14;
 
     &.open {
         color: $main-white;

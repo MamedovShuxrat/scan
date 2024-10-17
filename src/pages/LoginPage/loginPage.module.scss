@@ -1,16 +1,16 @@
 @import '../../assets/styles/variables.scss';
 
 .login {
-    @include sectionPadding;
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
+    @include sectionPadding;
 }
 
 .loginTitle {
-    @include sectionTitle;
     line-height: 48px;
     width: 100%;
+    @include sectionTitle;
 }
 
 .loginContent {

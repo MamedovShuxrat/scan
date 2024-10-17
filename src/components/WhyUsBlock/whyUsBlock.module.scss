@@ -6,9 +6,9 @@
 }
 
 .whyUsTitle {
-    @include sectionTitle;
     color: $main-dark;
     margin-bottom: 70px;
+    @include sectionTitle;
 }
 
 .slider {
@@ -39,7 +39,10 @@
 
 .cardIcon {
     @include cardIcon;
-    margin-bottom: 12px;
+
+    & {
+        margin-bottom: 12px;
+    }
 }
 
 .cardTitle {

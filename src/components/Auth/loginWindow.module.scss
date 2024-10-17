@@ -18,8 +18,8 @@
 .userViewRegister {
     color: $main-dark;
     font-family: 'Inter';
-    @include fsz14;
     opacity: 0.4;
+    @include fsz14;
 }
 
 .userViewLogin {
@@ -30,10 +30,10 @@
 
     color: $main-dark;
     font-family: 'Inter';
-    @include fsz14;
     text-align: left;
 
     transition: background ease-in-out .4s;
+    @include fsz14;
 
     &:hover {
         background: linear-gradient(90deg, #029491, #39c7ec, #7CE3E1);
@@ -69,15 +69,15 @@
     color: $main-dark;
     font-family: 'Inter';
     display: flex;
-    @include fsz10;
     text-wrap: nowrap;
+    @include fsz10;
 
     span {
         display: inline;
         color: $main-dark;
         font-family: 'Inter';
-        @include fsz14;
         margin-left: 9px;
+        @include fsz14;
 
     }
 }
@@ -85,14 +85,14 @@
 .limitAll {
     color: $main-dark;
     font-family: 'Inter';
-    @include fsz10;
     text-align: end;
+    @include fsz10;
 
     span {
         color: #8AC540;
         font-family: 'Inter';
-        @include fsz14;
         margin-left: 9px;
+        @include fsz14;
     }
 }
 
@@ -112,8 +112,8 @@
 .logout {
     color: $main-dark;
     font-family: 'Inter';
-    @include fsz10;
     opacity: .4;
+    @include fsz10;
 }
 
 .userImg {
@@ -122,8 +122,8 @@
 }
 
 .userName {
-    @include fsz14;
     text-wrap: nowrap;
+    @include fsz14;
 }
 
 

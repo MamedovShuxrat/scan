@@ -5,9 +5,9 @@
 }
 
 .trafficsTitle {
-    @include sectionTitle;
     color: $main-dark;
     margin-bottom: 66px;
+    @include sectionTitle;
 }
 
 .cards {
@@ -56,19 +56,19 @@
 }
 
 .cardTopImg {
-    @include cardTopIcon;
     object-fit: contain;
+    @include cardTopIcon;
 }
 
 .cardtitle {
-    @include fsz30;
     color: inherit;
     margin-bottom: 10px;
+    @include fsz30;
 }
 
 .cardDesc {
-    @include fsz18;
     color: inherit;
+    @include fsz18;
 }
 
 
@@ -81,17 +81,17 @@
 
 .newPrice {
     color: $main-dark;
-    @include fsz30;
     text-wrap: nowrap;
+    @include fsz30;
 }
 
 .oldPrice {
     color: $main-dark;
-    @include fsz25;
     text-align: left;
     text-decoration-line: line-through;
     opacity: 0.5;
     text-wrap: nowrap;
+    @include fsz25;
 
 }
 

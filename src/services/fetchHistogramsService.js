@@ -20,9 +20,9 @@ export const fetchHistograms = async ({
     inBusinessNews,
     onlyMainRole,
     onlyWithRiskFactors,
-    // excludeTechNews,
-    // excludeAnnouncements,
-    // excludeDigests
+    excludeTechNews,
+    excludeAnnouncements,
+    excludeDigests
 }) => {
     const token = localStorage.getItem('token')
 
@@ -52,12 +52,11 @@ export const fetchHistograms = async ({
                             onlyWithRiskFactors: onlyWithRiskFactors,
                         }
                     },
-                    // TODO надо или нет?
-                    // attributeFilters: {
-                    //     excludeTechNews:  excludeTechNews,
-                    //     excludeAnnouncements:  excludeAnnouncements,
-                    //     excludeDigests:  excludeDigests
-                    // },
+                    attributeFilters: {
+                        excludeTechNews: excludeTechNews,
+                        excludeAnnouncements: excludeAnnouncements,
+                        excludeDigests: excludeDigests
+                    },
                     similarMode: 'none',
                     limit: parseInt(limit) || 15,
                     sortType: 'issueDate',

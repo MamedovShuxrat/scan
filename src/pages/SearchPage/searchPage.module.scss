@@ -9,9 +9,9 @@
 }
 
 .searchTitle {
-    @include sectionTitle;
     margin-bottom: 25px;
     padding-right: 30px;
+    @include sectionTitle;
 }
 
 .subtitle {

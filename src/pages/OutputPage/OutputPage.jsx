@@ -18,8 +18,6 @@ const OutputPage = () => {
   const [transformedData, setTransformedData] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const itemsPerPage = useResize(9)
-  console.log(histogramsData, 'redux data');
-
   const transformData = (data) => {
     const totalDocuments = data?.data?.find(item => item.histogramType === 'totalDocuments')?.data || []
     const riskFactors = data?.data?.find(item => item.histogramType === 'riskFactors')?.data || []
@@ -34,7 +32,6 @@ const OutputPage = () => {
   useEffect(() => {
     if (!histogramsData || histogramsData.length === 0) {
       const savedData = localStorage.getItem('histogramsData');
-      console.log(savedData, 'local data');
 
       if (savedData) {
         const parsedData = JSON.parse(savedData);
@@ -107,17 +104,11 @@ const OutputPage = () => {
                   <span>Риски</span>
                 </div>
                 <div className={styles.resultList}>
-                  <ThreeDots />
-                  {/* {status === 'completed' ? (
-                  ) : (renderData()
-                    // transformedData.map((item) => (
-                    //   <div key={item.period} className={styles.resultItem}>
-                    //     <span>{item.period}</span>
-                    //     <span>{item.total}</span>
-                    //     <span>{item.risks}</span>
-                    //   </div>
-                    // ))
-                  )} */}
+                  {status === 'loading' ? (
+                    <div style={{ margin: '0 auto' }}><ThreeDots /></div>
+                  ) : (
+                    renderData()
+                  )}
                 </div>
               </div>
               <button onClick={handleNext}

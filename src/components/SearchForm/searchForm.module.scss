@@ -24,10 +24,10 @@
     span {
         display: flex;
         gap: 2px;
-        @include fsz18;
         color: $main-dark;
         margin-bottom: 20px;
         height: 20px;
+        @include fsz18;
 
         .footnoteInvalid {
             color: red;
@@ -75,8 +75,8 @@
         &::placeholder {
             opacity: 0.4;
             color: rgb(148, 148, 148);
-            @include fsz14;
             text-align: center;
+            @include fsz14;
         }
 
         &:focus {
@@ -159,8 +159,8 @@
 }
 
 .checkboxLabel {
-    @include fsz18;
     cursor: pointer;
+    @include fsz18;
 }
 
 .searchBtn {

@@ -14,8 +14,8 @@
 }
 
 .outputTitle {
-    @include sectionTitle;
     margin-bottom: 36px;
+    @include sectionTitle;
 }
 
 .subtitle {
@@ -78,14 +78,13 @@
 
     span {
         color: rgb(255, 255, 255);
-        @include fsz20;
         margin-bottom: 26px;
+        @include fsz20;
     }
 }
 
 .resultList {
     display: flex;
-    justify-content: center;
     padding: 17px 21px 17px 0;
     width: calc(100% - 97px);
 }
@@ -143,8 +142,8 @@
 
 .docsDate,
 .docsDateLink {
-    @include fsz16;
     color: rgb(148, 148, 148);
+    @include fsz16;
 }
 
 .docsDateLink {
@@ -152,8 +151,8 @@
 }
 
 .docsCardTitle {
-    @include fsz25;
     margin-bottom: 15px;
+    @include fsz25;
 }
 
 .docsTag {
@@ -197,10 +196,10 @@
 
 .docsText {
     margin-top: auto;
-    @include fsz16;
     color: $main-dark;
     opacity: .5;
     margin-bottom: 30px;
+    @include fsz16;
 }
 
 .docsSourceWrapper {
@@ -215,9 +214,9 @@
     border: 1px solid rgb(124, 227, 225);
     background: rgb(124, 227, 225);
     padding: 14px 30px;
+    transition: all .3s ease-in-out;
     @include fsz16;
 
-    transition: all .3s ease-in-out;
 
     &:hover {
         background: $main-white;

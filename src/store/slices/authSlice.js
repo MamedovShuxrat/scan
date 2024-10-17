@@ -50,6 +50,8 @@ const authSlice = createSlice({
             state.isAuthenticated = false
             localStorage.removeItem('token')
             localStorage.removeItem('expire')
+            localStorage.removeItem('histogramsData')
+            localStorage.removeItem('documentsDetails')
         }
     },
     extraReducers: (builder) => {

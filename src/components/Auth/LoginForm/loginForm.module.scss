@@ -28,9 +28,9 @@
 .formLinkLogin {
     padding: 0px 50px 8px;
     color: rgb(199, 199, 199);
-    @include fsz16;
     border-bottom: 1px solid rgb(199, 199, 199);
     transition: all .3s ease-in-out;
+    @include fsz16;
 
     &.active {
         color: rgb(2, 148, 145);
@@ -42,9 +42,9 @@
 .formLinkRegister {
     padding: 0px 25px 8px;
     color: rgb(199, 199, 199);
+    border-bottom: 1px solid rgb(199, 199, 199);
     @include fsz16;
 
-    border-bottom: 1px solid rgb(199, 199, 199);
 
     &.active {
         color: rgb(2, 148, 145);
@@ -59,22 +59,22 @@
 
     label {
         color: rgb(148, 148, 148);
-        @include fsz16;
         margin-bottom: 15px;
         display: block;
+        @include fsz16;
     }
 
 }
 
 .formInput {
     color: $main-dark;
-    @include fsz16;
     width: 100%;
     padding: 12px 19px;
     border-radius: 5px;
     border: 1px solid $main-dark;
 
     outline: none;
+    @include fsz16;
 
     &:focus {
         border: 1px solid $main-cyan;
