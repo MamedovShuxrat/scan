@@ -1,8 +1,6 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-
-const API_URL = import.meta.env.VITE_API_URL
-const HISTOGRAMS_API_URL = `${API_URL}/api/v1/objectsearch/histograms/`
+import { HISTOGRAMS_API_URL } from '../constants/index.js'
 
 // заполнили формы
 // сформировали параметры запроса на основе данных формы (отдельная функция)

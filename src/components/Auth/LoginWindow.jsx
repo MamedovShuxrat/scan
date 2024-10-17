@@ -5,7 +5,7 @@ import styles from './loginWindow.module.scss'
 const LoginWindow = () => {
     return (
         <div className={styles.userView}>
-            <Link className={styles.userViewRegister} to='#'>Зарегистрироваться</Link>
+            <Link className={styles.userViewRegister} to='/login'>Зарегистрироваться</Link>
             <span></span>
             <Link className={styles.userViewLogin} to='/login'>Войти</Link>
         </div>

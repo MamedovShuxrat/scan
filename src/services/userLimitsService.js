@@ -1,7 +1,5 @@
 import axios from "axios"
-
-const API_URL = import.meta.env.VITE_API_URL
-const GET_USER_DATA_URL = `${API_URL}/api/v1/account/info/`
+import { GET_USER_DATA_URL } from '../constants/index.js'
 
 export const getUserInfo = async () => {
   const token = localStorage.getItem('token')

@@ -4,67 +4,21 @@ import outputImg from '../../assets/images/output-bg.png'
 import leftBtn from '../../assets/icons/common/left.svg'
 import rightBtn from '../../assets/icons/common/right.svg'
 import { useDispatch, useSelector } from 'react-redux'
-
+import useResize from '../../components/utils/useResize'
 import docsImg from '../../assets/images/docs-img-1.png'
 import docsImg1 from '../../assets/images/docs-img-2.png'
-const RESULTDATA = [
-  {
-    id: 1,
-    period: '10.09.2021',
-    total: 5,
-    risks: 0,
-  },
-  {
-    id: 2,
-    period: '10.09.2021',
-    total: 5,
-    risks: 0,
-  },
-  {
-    id: 3,
-    period: '10.09.2021',
-    total: 5,
-    risks: 0,
-  },
-  {
-    id: 4,
-    period: '10.09.2021',
-    total: 5,
-    risks: 0,
-  },
-  {
-    id: 5,
-    period: '10.09.2021',
-    total: 5,
-    risks: 0,
-  },
-  {
-    id: 6,
-    period: '10.09.2021',
-    total: 5,
-    risks: 0,
-  },
-  {
-    id: 7,
-    period: '10.09.2021',
-    total: 5,
-    risks: 0,
-  }
-  , {
-    id: 8,
-    period: '10.09.2021',
-    total: 5,
-    risks: 0,
-  }
+import ThreeDots from '../../components/utils/ThreeDotsLoader'
 
-]
 
 const OutputPage = () => {
   const dispatch = useDispatch()
   const status = useSelector((state) => state.histograms.status)
   const histogramsData = useSelector((state) => state.histograms.data)
   const [totalDocuments, setTotalDocumenst] = useState(null)
-  console.log(histogramsData, 'redux');
+  const [transformedData, setTransformedData] = useState([])
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const itemsPerPage = useResize(9)
+  console.log(histogramsData, 'redux data');
 
   const transformData = (data) => {
     const totalDocuments = data?.data?.find(item => item.histogramType === 'totalDocuments')?.data || []
@@ -76,30 +30,51 @@ const OutputPage = () => {
       risks: riskFactors[index]?.value || 0
     }))
   }
+
   useEffect(() => {
-    if (histogramsData) {
-      const totalDocumentsCount = histogramsData?.data?.find(item => item.histogramType === 'totalDocuments')?.data.length || 0
-      setTotalDocumenst(totalDocumentsCount)
+    if (!histogramsData || histogramsData.length === 0) {
+      const savedData = localStorage.getItem('histogramsData');
+      console.log(savedData, 'local data');
+
+      if (savedData) {
+        const parsedData = JSON.parse(savedData);
+        const transformed = transformData(parsedData);
+        setTransformedData(transformed);
+        const totalDocumentsCount = parsedData?.data?.find(item => item.histogramType === 'totalDocuments')?.data.length || 0;
+        setTotalDocumenst(totalDocumentsCount);
+      }
+    } else {
+      const transformed = transformData(histogramsData);
+      setTransformedData(transformed);
+
+      const totalDocumentsCount = histogramsData?.data?.find(item => item.histogramType === 'totalDocuments')?.data.length || 0;
+      setTotalDocumenst(totalDocumentsCount);
     }
-  }, [histogramsData])
+  }, [histogramsData]);
+
 
   const renderData = () => {
-    const transformedData = transformData(histogramsData)
-    console.log(transformedData, 'transformedData');
-
-    return transformedData.map((item) => (
-      <div key={item.period} className={styles.resultItem}>
+    const start = currentIndex * itemsPerPage
+    const end = start + itemsPerPage
+    const paginatedData = transformedData.slice(start, end)
+    return paginatedData.map((item, index) => (
+      <div key={index} className={styles.resultItem}>
         <span>{item.period}</span>
         <span>{item.total}</span>
         <span>{item.risks}</span>
       </div>
     ))
   }
-
-  // if (status === 'loading') return <div>loading</div>
-
-  console.log(status);
-
+  const handleNext = () => {
+    if ((currentIndex + 1) * itemsPerPage < transformedData.length) {
+      setCurrentIndex(currentIndex + 1)
+    }
+  }
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1)
+    }
+  }
   return (
     <main>
       <div className="container">
@@ -119,7 +94,12 @@ const OutputPage = () => {
               <p className={styles.mainDesc}>Найдено {totalDocuments} вариантов</p>
             </div>
             <div className={styles.outputResultWrapper}>
-              <button className={styles.resultLeft}><img src={leftBtn} alt="left arrow" /></button>
+              <button
+                onClick={handlePrev}
+                disabled={currentIndex === 0}
+                className={styles.resultLeft}>
+                <img src={leftBtn} alt="left arrow" />
+              </button>
               <div className={styles.resultWrapper}>
                 <div className={styles.resultTitleWrapper}>
                   <span>Период</span>
@@ -127,11 +107,24 @@ const OutputPage = () => {
                   <span>Риски</span>
                 </div>
                 <div className={styles.resultList}>
-
-                  {status === 'loading' ? <div>Идёт загрузка</div> : renderData()}
+                  <ThreeDots />
+                  {/* {status === 'completed' ? (
+                  ) : (renderData()
+                    // transformedData.map((item) => (
+                    //   <div key={item.period} className={styles.resultItem}>
+                    //     <span>{item.period}</span>
+                    //     <span>{item.total}</span>
+                    //     <span>{item.risks}</span>
+                    //   </div>
+                    // ))
+                  )} */}
                 </div>
               </div>
-              <button className={styles.resultRight}><img src={rightBtn} alt="right arrow" /></button>
+              <button onClick={handleNext}
+                disabled={(currentIndex + 1) * itemsPerPage >= transformedData.length}
+                className={styles.resultRight}>
+                <img src={rightBtn} alt="right arrow" />
+              </button>
             </div>
           </div>
 

@@ -30,7 +30,8 @@ const histogramsSlice = createSlice({
             })
             .addCase(getHistograms.fulfilled, (state, action) => {
                 state.status = 'completed';
-                state.data = action.payload
+                state.data = action.payload;
+                localStorage.setItem('histogramsData', JSON.stringify(action.payload))
             })
             .addCase(getHistograms.rejected, (state, action) => {
                 state.status = 'rejrected';

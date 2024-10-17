@@ -1,8 +1,7 @@
 import axios from "axios"
 import { toast } from 'react-hot-toast'
+import { AUTH_LOGIN_URL } from '../constants/index.js'
 
-const API_URL = import.meta.env.VITE_API_URL
-const AUTH_LOGIN_URL = `${API_URL}/api/v1/account/login/`
 
 export const loginUser = async (login, password) => {
   try {
