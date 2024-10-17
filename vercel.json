@@ -1,8 +1,0 @@
-{
-    "rewrites": [
-        {
-            "source": "/api/v1/*",
-            "destination": "https://gateway.scan-interfax.ru/api/v1/:splat"
-        }
-    ]
-}
