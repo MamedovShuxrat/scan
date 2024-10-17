@@ -6,9 +6,11 @@ const useResize = (initialItemsPerPage) => {
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth >= 1380) {
-                setItemsPerPage(10);
-            } else if (window.innerWidth >= 1165) {
+                setItemsPerPage(9);
+            } else if (window.innerWidth >= 1246) {
                 setItemsPerPage(8);
+            } else if (window.innerWidth >= 1165) {
+                setItemsPerPage(7);
             } else if (window.innerWidth >= 930) {
                 setItemsPerPage(6);
             } else if (window.innerWidth >= 768) {

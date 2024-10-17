@@ -84,8 +84,6 @@ const SearchForm = () => {
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0;
   };
-  console.log(form);
-
 
 
   useEffect(() => {

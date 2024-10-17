@@ -1,6 +1,5 @@
 import axios from "axios";
 import { DOCUMENTS_ID_API_URL } from "../constants";
-import { fetchDocumentsDetails } from "../store/slices/documentsSlice";
 
 export const fetchDocsIDs = async ({
     inn,
@@ -17,7 +16,6 @@ export const fetchDocsIDs = async ({
     excludeDigests
 }) => {
     const token = localStorage.getItem('token');
-
     try {
         const response = await axios.post(
             DOCUMENTS_ID_API_URL,
@@ -62,7 +60,6 @@ export const fetchDocsIDs = async ({
 
         if (response.status === 200) {
             const docIDs = response.data.items.map(item => item.encodedId)
-            dispatch(fetchDocumentsDetails({ ids: docIDs }))
             return docIDs;
         } else {
             throw new Error(`Error ${response.status}: ${response.statusText}`);

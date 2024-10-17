@@ -7,7 +7,6 @@ export const fetchDocumentsIDs = createAsyncThunk(
     async (params, { rejectWithValue }) => {
         try {
             const response = await fetchDocsIDs(params);
-            console.log(response, 'fetchID');
 
             return response;
         } catch (error) {
@@ -18,16 +17,16 @@ export const fetchDocumentsIDs = createAsyncThunk(
 
 export const fetchDocumentsDetails = createAsyncThunk(
     'documents/fetchDetails',
-    async (params, { rejectWithValue }) => {
+    async ({ documentIds }, { rejectWithValue }) => {
         try {
-            const response = await fetchDocsDetails(params);
+            const response = await fetchDocsDetails({ documentIds });
+            console.log(response, 'fetchDocs');
             return response;
         } catch (error) {
             return rejectWithValue(error.message);
         }
     }
 );
-
 const documentsSlice = createSlice({
     name: 'documents',
     initialState: {

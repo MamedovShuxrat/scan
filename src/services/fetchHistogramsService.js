@@ -76,7 +76,6 @@ export const fetchHistograms = async ({
             error: 'Ошибка при загрузке данных'
         }
         );
-        console.log(response.data, 'fetch');
 
         if (response.status === 200) {
             return response.data;
