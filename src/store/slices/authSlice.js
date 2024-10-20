@@ -55,18 +55,17 @@ const authSlice = createSlice({
             localStorage.removeItem('docsIDs')
             localStorage.removeItem('docsData')
             localStorage.removeItem('searchPerformed')
-
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(login.pending, (state) => {
                 state.loading = true
-                state.isAuthenticated = true
                 state.error = null
             })
             .addCase(login.fulfilled, (state, action) => {
                 state.loading = false
+                state.isAuthenticated = true
                 state.error = null
             })
             .addCase(login.rejected, (state, action) => {
