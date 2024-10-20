@@ -2,14 +2,6 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { HISTOGRAMS_API_URL } from '../constants/index.js'
 
-// заполнили формы
-// сформировали параметры запроса на основе данных формы (отдельная функция)
-// передали параметры в функции для получения гистограм и публикаций
-// вызвали функции через Promise.all
-// отобразили результаты на новой странице
-
-// fetch publications list
-
 export const fetchHistograms = async ({
     inn,
     tonality,
