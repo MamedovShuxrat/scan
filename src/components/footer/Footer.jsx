@@ -19,7 +19,7 @@ const Footer = () => {
 
                 </div>
                 <div className={styles.footerCopy} >Фронтенд частью проекта занимался я
-                    <a href="https://github.com/MamedovShuxrat" target="_blank" class="footer__desc_accent">
+                    <a href="https://github.com/MamedovShuxrat" target="_blank"  >
                         Мамедов Шухрат
                     </a>  , с целью
                     продемонстрировать мои навыки и знания в области веб-разработки. Сайт предназначен для

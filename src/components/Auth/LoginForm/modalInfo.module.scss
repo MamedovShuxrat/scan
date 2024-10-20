@@ -1,0 +1,67 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    padding: 40px;
+}
+
+.modalTitle {
+    font-family: "Ferry";
+    font-size: clamp(20px, 4vw, 45px);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.modalHeader {
+    margin-bottom: 10px;
+}
+
+.modalBody {
+    margin-bottom: 20px;
+
+    p {
+        margin-bottom: 10px;
+
+        strong {
+            font-family: "Ferry";
+            margin-right: 10px;
+        }
+
+    }
+
+
+}
+
+.modalFooter {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modalBtn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background ease-in-out .3s;
+
+    &:hover {
+        background-color: #0056b3;
+    }
+}

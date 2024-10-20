@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import styles from './searchForm.module.scss'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getHistograms } from '../../store/slices/histogramsSlice'
-import toast from 'react-hot-toast'
 import { fetchDocumentsIDs } from '../../store/slices/documentsSlice'
+import { validateInn, validateLimit } from '../utils/validateFunctions'
+import toast from 'react-hot-toast'
 
 const TONALITY = [
   { id: 'any', name: 'любая' },
@@ -32,7 +33,7 @@ const SearchForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [errors, setErrors] = useState({})
-  const [form, setForm] = useState({})
+  const [form, setForm] = useState(INITIAL_FORM)
 
   const handleFormChange = (value, fieldName) => {
     setForm(oldForm => {
@@ -44,10 +45,8 @@ const SearchForm = () => {
   }
   const [isFormValid, setIsFormValid] = useState(false)
 
-  function validateInn(inn) {
-    const regex = /^\d{10}$/;
-    return regex.test(inn);
-  }
+
+
   const validateFields = () => {
     const newErrors = {}
     const today = new Date().toISOString().split('T')[0]
@@ -78,8 +77,8 @@ const SearchForm = () => {
       newErrors.endDate = 'Дата начала не может быть позже даты окончания'
       toast.error('Дата начала не может быть позже даты окончания')
     }
-    if (!form.limit || form.limit < 1 || form.limit > 1000) {
-      newErrors.limit = 'Количество документов должно быть от 1 до 1000'
+    if (!form.limit || !validateLimit(form.limit)) {
+      newErrors.limit = 'Количество документов должно быть от 0 до 1000';
     }
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0;
@@ -92,6 +91,8 @@ const SearchForm = () => {
   }, [form.inn, form.startDate, form.endDate, form.limit])
 
   const handleSearch = () => {
+    localStorage.removeItem('docsData');
+    localStorage.removeItem('docsIDs');
     const params = {
       inn: form.inn,
       tonalityParams: form.tonalityParams,
@@ -110,12 +111,14 @@ const SearchForm = () => {
     try {
       dispatch(getHistograms(params)).unwrap()
       dispatch(fetchDocumentsIDs(params)).unwrap()
+      localStorage.setItem('searchPerformed', JSON.stringify(true))
       navigate('/output')
     } catch (e) {
       toast.error('Произошла ошибка во время запроса')
     }
 
   }
+
   return (
     <div className={styles.search}>
       <div className={styles.searchItems}>
@@ -156,12 +159,16 @@ const SearchForm = () => {
               </span></span>
             <input
               className={errors.limit ? styles.inputInvalid : ''}
-              type="number"
-              inputMode="numeric"
-              pattern="\d{1000}"
-              maxLength={1000}
-              placeholder='От 1 до 1000'
-              onChange={(e) => handleFormChange(e.target.value, 'limit')}
+              type="text"
+              placeholder="От 0 до 1000"
+              value={form.limit}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (/^\d*$/.test(value)) {
+                  handleFormChange(value, 'limit');
+                }
+              }}
+              maxLength={4}
             />
           </label>
           <label className={styles.searchLabel}>

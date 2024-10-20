@@ -42,6 +42,18 @@
     margin-bottom: 70px;
 }
 
+.serviceBtnWrapper {
+    display: flex;
+    justify-content: center;
+
+    .serviceBtn {
+
+        padding: 15px 10px;
+        @include fsz18;
+
+    }
+}
+
 .serviceBtn {
     padding: 15px 60px;
     border-radius: 5px;
@@ -53,9 +65,9 @@
     font-weight: 500;
     line-height: 27px;
     letter-spacing: 1%;
-    text-align: left;
+    text-align: center;
 
-    transition: all .3s ease-in-out;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 
     &:hover {
         background: $main-white;
@@ -77,6 +89,18 @@
         font-size: clamp(10px, 1.5vw, 20px);
         line-height: clamp(10px, 2.5vw, 20px);
         margin-bottom: 50px;
+    }
+
+
+    .serviceBtnWrapper {
+        display: flex;
+        justify-content: center;
+
+        .serviceBtn {
+            @include fsz16;
+            padding: 10px 20px;
+
+        }
     }
 }
 

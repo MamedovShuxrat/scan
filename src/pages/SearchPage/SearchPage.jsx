@@ -9,7 +9,7 @@ const SearchPage = () => {
         <main>
             <div className="container">
                 <section className={styles.searchPage}>
-                    <div cla ssName={styles.searchTop}>
+                    <div className={styles.searchTop}>
                         <div className={styles.searchTextWrapper}>
                             <h2 className={styles.searchTitle}>Найдите необходимые данные в пару кликов.</h2>
                             <h6 className={styles.subtitle} >

@@ -120,12 +120,13 @@
 
 .docsWrapper {
     display: flex;
+    flex-wrap: wrap;
     gap: 40px;
     margin-top: 60px;
 }
 
 .docsItem {
-    width: 50%;
+    width: calc(50% - 40px);
     display: flex;
     flex-direction: column;
     padding: 15px 30px 35px 30px;
@@ -148,6 +149,10 @@
 
 .docsDateLink {
     text-decoration: underline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 300px;
 }
 
 .docsCardTitle {
@@ -157,25 +162,28 @@
 
 .docsTag {
     padding: 4px 11px;
-    color: $main-dark;
+    color: $main-white;
     font-size: 12px;
     font-weight: 400;
     line-height: 15px;
     border-radius: 5px;
-    background: rgb(255, 182, 79);
+    background: $main-cyan;
     display: inline-block;
     margin-bottom: 15px;
 
     &.tech {
         background: rgb(255, 182, 79);
+        color: $main-dark;
     }
 
     &.announcement {
         background: rgb(89, 112, 255);
+        color: $main-dark;
     }
 
     &.digest {
         background: rgb(124, 227, 225);
+        color: $main-dark;
     }
 }
 
@@ -197,9 +205,48 @@
 .docsText {
     margin-top: auto;
     color: $main-dark;
-    opacity: .5;
+    color: rgba(0, 0, 0, 0.5);
     margin-bottom: 30px;
     @include fsz16;
+
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    max-height: 300px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #999;
+    }
+
+    &::-webkit-scrollbar-corner {
+        display: none;
+    }
+
+    &::-webkit-resizer {
+        display: none;
+    }
 }
 
 .docsSourceWrapper {
@@ -214,7 +261,7 @@
     border: 1px solid rgb(124, 227, 225);
     background: rgb(124, 227, 225);
     padding: 14px 30px;
-    transition: all .3s ease-in-out;
+    transition: background .3s ease-in-out;
     @include fsz16;
 
 
@@ -242,7 +289,7 @@
     border: 1px solid rgb(89, 112, 255);
     padding: 15px 50px;
 
-    transition: all .3s ease-in-out;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 
     &:hover {
         background: $main-white;
@@ -256,7 +303,7 @@
     }
 
     .docsItem {
-        width: 100%;
+        width: calc(100% - 40px);
     }
 
     .resultList {

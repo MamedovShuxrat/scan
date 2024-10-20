@@ -52,12 +52,17 @@ const authSlice = createSlice({
             localStorage.removeItem('expire')
             localStorage.removeItem('histogramsData')
             localStorage.removeItem('documentsDetails')
+            localStorage.removeItem('docsIDs')
+            localStorage.removeItem('docsData')
+            localStorage.removeItem('seacrhPerformed')
+
         }
     },
     extraReducers: (builder) => {
         builder
             .addCase(login.pending, (state) => {
                 state.loading = true
+                state.isAuthenticated = true
                 state.error = null
             })
             .addCase(login.fulfilled, (state, action) => {

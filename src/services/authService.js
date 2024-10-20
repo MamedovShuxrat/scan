@@ -21,8 +21,6 @@ export const loginUser = async (login, password) => {
 
     return response.data
   } catch (error) {
-    console.log(error, 'errrrr');
-
     const errorMessage = error.response?.data?.message || 'Не удалось войти в систему.'
     toast.error(errorMessage);
     throw error

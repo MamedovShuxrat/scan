@@ -20,7 +20,6 @@ export const fetchDocumentsDetails = createAsyncThunk(
     async ({ documentIds }, { rejectWithValue }) => {
         try {
             const response = await fetchDocsDetails({ documentIds });
-            console.log(response, 'fetchDocs');
             return response;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -38,6 +37,7 @@ const documentsSlice = createSlice({
     reducers: {
         setDocumentsIDs: (state, action) => {
             state.ids = action.payload;
+            localStorage.setItem('docsIDs', JSON.stringify(action.payload))
         },
         setDocumentsDetails: (state, action) => {
             state.details = action.payload;
@@ -51,6 +51,8 @@ const documentsSlice = createSlice({
             .addCase(fetchDocumentsIDs.fulfilled, (state, action) => {
                 state.status = 'completed';
                 state.ids = action.payload;
+                localStorage.setItem('docsIDs', JSON.stringify(action.payload))
+
             })
             .addCase(fetchDocumentsIDs.rejected, (state, action) => {
                 state.status = 'rejected';
