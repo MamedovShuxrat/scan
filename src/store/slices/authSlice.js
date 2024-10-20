@@ -54,7 +54,7 @@ const authSlice = createSlice({
             localStorage.removeItem('documentsDetails')
             localStorage.removeItem('docsIDs')
             localStorage.removeItem('docsData')
-            localStorage.removeItem('seacrhPerformed')
+            localStorage.removeItem('searchPerformed')
 
         }
     },

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import styles from './outputpage.module.scss'
 import outputImg from '../../assets/images/output-bg.png'
 import leftBtn from '../../assets/icons/common/left.svg'
@@ -163,10 +164,18 @@ const OutputPage = () => {
           <div className={styles.outputTopWrapper}>
             <div className={styles.outputTextWrapper}>
               <h2 className={styles.outputTitle}>
-                {transformedData ? "Результаты успешно загружены!" : "Ищем. Скоро будут результаты"}</h2>
+                {transformedData && transformedData.length > 0
+                  ? "Результаты успешно загружены!"
+                  : "По вашим параметрам ничего не нашлось"}
+              </h2>
               <h6 className={styles.subtitle}>
-                {transformedData ? "Мы нашли информацию, соответствующую вашему запросу. Пожалуйста, просмотрите результаты ниже" : "Поиск может занять некоторое время, просим сохранять терпение"}
+                {transformedData && transformedData.length > 0
+                  ? "Мы нашли информацию, соответствующую вашему запросу. Пожалуйста, просмотрите результаты ниже"
+                  : "К сожалению, мы не нашли информацию по вашему запросу. Попробуйте изменить параметры поиска."}
               </h6>
+              {transformedData && transformedData.length === 0 && (
+                <Link to="/search" className={styles.outputBackBtn}>Вернуться назад</Link>
+              )}
             </div>
             <img className={styles.outputTopImg} src={outputImg} alt="bg" />
           </div>
@@ -176,12 +185,14 @@ const OutputPage = () => {
               <p className={styles.mainDesc}>Найдено {totalDocuments} вариантов</p>
             </div>
             <div className={styles.outputResultWrapper}>
-              <button
-                onClick={handlePrev}
-                disabled={currentIndex === 0}
-                className={styles.resultLeft}>
-                <img src={leftBtn} alt="left arrow" />
-              </button>
+              {totalDocuments >= 9 && (
+                <button
+                  onClick={handlePrev}
+                  disabled={currentIndex === 0}
+                  className={styles.resultLeft}>
+                  <img src={leftBtn} alt="left arrow" />
+                </button>
+              )}
               <div className={styles.resultWrapper}>
                 <div className={styles.resultTitleWrapper}>
                   <span>Период</span>
@@ -196,11 +207,13 @@ const OutputPage = () => {
                   )}
                 </div>
               </div>
-              <button onClick={handleNext}
-                disabled={(currentIndex + 1) * itemsPerPage >= transformedData.length}
-                className={styles.resultRight}>
-                <img src={rightBtn} alt="right arrow" />
-              </button>
+              {totalDocuments >= 9 && (
+                <button onClick={handleNext}
+                  disabled={(currentIndex + 1) * itemsPerPage >= transformedData.length}
+                  className={styles.resultRight}>
+                  <img src={rightBtn} alt="right arrow" />
+                </button>
+              )}
             </div>
           </div>
 

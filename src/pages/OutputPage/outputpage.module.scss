@@ -28,6 +28,25 @@
 
 }
 
+.outputBackBtn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+
+    background: rgb(89, 112, 255);
+    border: 1px solid rgb(89, 112, 255);
+    color: $main-white;
+    text-align: center;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    margin: 10px 0;
+    @include fsz16;
+
+    &:hover {
+        background: $main-white;
+        color: rgb(89, 112, 255);
+    }
+}
+
 .outputTopImg {
     max-width: 50%;
     object-fit: contain;
@@ -71,7 +90,7 @@
     justify-content: center;
     align-items: center;
 
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 6px 0px 0px 6px;
     background: rgb(2, 148, 145);
     padding: 17px;
     max-width: 97px;
@@ -334,6 +353,9 @@
         margin: 20px auto;
     }
 
+    .outputBackBtn {
+        padding: 8px 10px;
+    }
 
 }
 
@@ -352,6 +374,10 @@
             width: 25px;
         }
     }
+
+    .outputBackBtn {
+        padding: 5px;
+    }
 }
 
 @media (max-width: 375px) {
@@ -365,7 +391,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 5px;
-        border-radius: 10px 10px 0px 0px;
+        border-radius: 6px 6px 0px 0px;
 
         max-width: 100%;
 

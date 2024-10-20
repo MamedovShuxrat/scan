@@ -7,6 +7,8 @@ export const getHistograms = createAsyncThunk(
     async (params, { rejectWithValue }) => {
         try {
             const data = await fetchHistograms(params)
+            console.log(data, 'histograms');
+
             return data
         } catch (error) {
             return rejectWithValue(error.message)

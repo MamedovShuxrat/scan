@@ -1,3 +1,6 @@
+@import '../../../assets/styles/variables.scss';
+
+
 .modalOverlay {
     position: fixed;
     top: 0;
@@ -60,8 +63,23 @@
     color: white;
     cursor: pointer;
     transition: background ease-in-out .3s;
+    @include fsz16;
 
     &:hover {
         background-color: #0056b3;
+    }
+}
+
+@media (max-width: 768px) {
+    .modalContent {
+        width: 400px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 575px) {
+    .modalContent {
+        width: 80%;
+        padding: 20px;
     }
 }
